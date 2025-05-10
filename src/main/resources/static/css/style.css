@@ -5,6 +5,13 @@
     width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
 }
 
+/* Uniform image styling for event cards */
+.uniform-img {
+    width: 100%; /* Adjust to the container's width */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Crop the image to fit */
+}
+
 /* Sección de "Quienes somos" */
 .quienes-somos {
   position: relative;
@@ -33,4 +40,30 @@
   border-radius: 12px; /* Bordes redondeados */
   color: #000; /* Asegura que el texto sea legible */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para destacar */
+}
+
+/* Estilo para las tarjetas de eventos */
+.card-evento {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    min-height: 300px; /* Altura mínima ajustada */
+}
+
+.card-evento:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-evento .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-evento .card-text {
+    font-size: 1rem;
+    color: #555;
 }
