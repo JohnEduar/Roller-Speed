@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/instructores")
 public class InstructoresController {
-    @GetMapping("/instructores")
+    @GetMapping
     public String index() {
         return "instructores";
     }

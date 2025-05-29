@@ -11,7 +11,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="home.html">
+                <a class="navbar-brand" th:href="home.html">
                     <img th:src="@{/images/letra-r.png}" alt="" width="30" height="30">
                     <span class="ms-2">Roller Speed</span>
                 </a>
@@ -40,12 +40,9 @@
                               Servicios
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Registro de Aspirantes</a></li>
-                              <li><a class="dropdown-item" href="#">Gestión de Alumnos</a></li>
-                              <li><a class="dropdown-item" href="#">Gestión de Instructores</a></li>
-                              <li><a class="dropdown-item" href="#">Gestión de Clases</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#">Gestión de Pagos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/alumnos}">Gestión de Alumnos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/instructores}">Gestión de Instructores</a></li>
+                            <li><a class="dropdown-item" th:href="@{/clases}">Gestión de Clases</a></li>
                             </ul>
                           </li>            
                     </ul>
