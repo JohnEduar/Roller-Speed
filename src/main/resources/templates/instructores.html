@@ -56,7 +56,68 @@
     </header>
 <main class="text-center my-5">
   <h1 class="page-title">Gestión de Instructores</h1>
-  <p class="page-subtitle">Página para la gestión de instructores.</p>
+
+  <section class="container my-4">
+    <form th:action="@{/instructores/guardar}" method="post" class="container w-50">
+      <input type="hidden" name="id" th:value="${instructor?.id}">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <label for="nombre" class="fw-bold mb-2">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" class="form-control" th:value="${instructor?.nombre}" required>
+        </li>
+        <li class="list-group-item">
+          <label for="apellido" class="fw-bold mb-2">Apellido:</label>
+          <input type="text" id="apellido" name="apellido" class="form-control" th:value="${instructor?.apellido}" required>
+        </li>
+        <li class="list-group-item">
+          <label for="identificacion" class="fw-bold mb-2">Identificación:</label>
+          <input type="text" id="identificacion" name="identificacion" class="form-control" th:value="${instructor?.identificacion}" required>
+        </li>
+        <li class="list-group-item">
+          <label for="email" class="fw-bold mb-2">Correo:</label>
+          <input type="email" id="email" name="email" class="form-control" th:value="${instructor?.email}" required>
+        </li>
+        <li class="list-group-item">
+          <label for="telefono" class="fw-bold mb-2">Teléfono:</label>
+          <input type="text" id="telefono" name="telefono" class="form-control" th:value="${instructor?.telefono}" required>
+        </li>
+      </ul>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary" th:text="${instructor?.id == null ? 'Crear' : 'Actualizar'}"></button>
+      </div>
+    </form>
+  </section>
+
+  <section class="container my-4">
+    <h2>Lista de Instructores</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Identificación</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="instructor : ${instructores}">
+          <td th:text="${instructor.id}"></td>
+          <td th:text="${instructor.nombre}"></td>
+          <td th:text="${instructor.apellido}"></td>
+          <td th:text="${instructor.identificacion}"></td>
+          <td th:text="${instructor.email}"></td>
+          <td th:text="${instructor.telefono}"></td>
+          <td>
+            <a th:href="@{/instructores/editar/{id}(id=${instructor.id})}" class="btn btn-warning btn-sm">Editar</a>
+            <a th:href="@{/instructores/eliminar/{id}(id=${instructor.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </main>
 
 

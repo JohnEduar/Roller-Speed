@@ -30,4 +30,8 @@ public class InstructorService {
     public void deleteInstructor(Long id) {
         instructorRepository.deleteById(id);
     }
+
+    public Instructor getInstructorById(Long id) {
+        return instructorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Instructor no encontrado con ID: " + id));
+    }
 }

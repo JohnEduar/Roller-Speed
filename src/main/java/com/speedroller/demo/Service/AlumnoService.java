@@ -30,4 +30,8 @@ public class AlumnoService {
     public void deleteAlumno(Long id) {
         alumnoRepository.deleteById(id);
     }
+
+    public Alumno getAlumnoById(Long id) {
+    return alumnoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Alumno no encontrado con ID: " + id));
+}
 }

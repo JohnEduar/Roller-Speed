@@ -30,4 +30,8 @@ public class ClaseService {
     public void deleteClase(Long id) {
         claseRepository.deleteById(id);
     }
+
+    public Clase getClaseById(Long id) {
+        return claseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Clase no encontrada con ID: " + id));
+    }
 }
