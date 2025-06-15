@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,40 +19,58 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" th:href="@{/home}">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/eventos}">Eventos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/mision}">Misión</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/vision}">Visión</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/valores}">Valores</a>
-                            </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Servicios
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" th:href="@{/alumnos}">Gestión de Alumnos</a></li>
-                      <li><a class="dropdown-item" th:href="@{/instructores}">Gestión de Instructores</a></li>
-                      <li><a class="dropdown-item" th:href="@{/clases}">Gestión de Clases</a></li>
-                    </ul>
-                  </li>                   
-                </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
-                  <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
+              <!-- Menú de navegación a la izquierda -->
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link" th:href="@{/home}">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" th:href="@{/eventos}">Eventos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" th:href="@{/mision}">Misión</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" th:href="@{/vision}">Visión</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" th:href="@{/valores}">Valores</a>
+                  </li>
+
+                  <!-- Solo para usuarios autenticados -->
+                  <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                      <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Servicios
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" th:href="@{/alumnos}">Gestión de Alumnos</a></li>
+                          <li><a class="dropdown-item" th:href="@{/instructores}">Gestión de Instructores</a></li>
+                          <li><a class="dropdown-item" th:href="@{/clases}">Gestión de Clases</a></li>
+                      </ul>
+                  </li>
+
+                  <!-- Solo para el rol ADMIN -->
+                  <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                      <a class="nav-link text-danger fw-bold" th:href="@{/admin/usuarios}">Gestión de Usuarios</a>
+                  </li>
+              </ul>
+
+              <!-- Controles de sesión a la derecha -->
+              <div class="d-flex align-items-center">
+                  <!-- Si NO ha iniciado sesión -->
+                  <div sec:authorize="!isAuthenticated()">
+                      <a class="btn btn-outline-primary" th:href="@{/auth/login}">Iniciar sesión</a>
+                  </div>
+
+                  <!-- Si SÍ ha iniciado sesión -->
+                  <div sec:authorize="isAuthenticated()">
+                      <form th:action="@{/logout}" method="post" class="ms-2">
+                          <button class="btn btn-outline-danger" type="submit">Cerrar sesión</button>
+                      </form>
+                  </div>
               </div>
-            </div>
-          </nav>
+          </div>
+        </nav>
     </header>
 
 <main class="text-center my-5">
